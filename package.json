@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "description": "An ultralight React sample project",
   "main": "index.js",
+  "author": "Roy Wood",
+  "license": "ISC",
+
   "scripts": {
     "start": "webpack-dev-server --progress --profile --colors --content-base build/",
     "build": "webpack --config webpack.config.js --progress --profile --colors"
   },
-  "author": "Roy Wood",
-  "license": "ISC",
+
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
+
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
