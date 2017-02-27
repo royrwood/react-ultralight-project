@@ -17,7 +17,12 @@ const config = {
 
     module: {
         loaders: [
-            { test: /\.jsx?/, include: JSX_DIR, loader: 'babel-loader' },
+            {
+                test: /\.jsx?/,
+                include: JSX_DIR,
+                loader: 'babel-loader',
+                query: { babelrc: false, presets: ["es2015", "react"] }
+            },
             // { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, loader: "file-loader" },
         ]
     },

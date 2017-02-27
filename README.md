@@ -147,4 +147,58 @@ Javascript compiler (or transpiler) that converts ES6 Javascript to ES3 Javascri
 addition to supporting ES6, `babel` also supports JSX syntax, which is unique to React development.
 
 If you look at the `devDependencies` section of the `package.json` file in the project, you'll notice that there are 
-several `babel` libraries listed.
+several `babel` libraries listed:
+
+```
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "file-loader": "^0.10.1",
+    "install": "^0.8.7",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  }
+```
+
+Given that we have our `babel` requirements installed by `npm`, the next question is how do we invoke `babel` to transpile
+our code for us.  We could do it by executing a shell command, but that would be tedious and error-prone, at best.  A much
+better approach is to have the transpilation occur when we create our deployment bundle, which is discussed in the next
+section of this tutorial.
+
+
+**Deployment Bundling:**
+
+The final step in getting our React code to run in a browser ties together everything discussed so far in this tutorial.    
+So far we have installed our required runtime libraries and the `babel` transpiler.  Now we need to run our code through
+`babel`, mix in the React runtime library, and produce a final package that can be loaded by a browser.  This final step
+is performed by a tool called `webpack` (you may have previously noticed the references to `webpack` in the 
+`devDependencies` section of our `package.json` file).
+
+`Webpack` examines Javascript files, looking for instances where those files in turn refer to other Javascript files via
+`require` or `import` statements.  `Webpack` recursively collects all referenced Javascript code into a single result
+file which can easily be referenced from an HTML file.  This process is driven by a config file such as the `webpack.config.js`
+file in this project.  The key section of that file is shown below:
+
+```javascript
+const BUILD_DIR = path.resolve(__dirname, './build');
+const JSX_DIR = path.resolve(__dirname, './src/jsx');
+
+const config = {
+    entry: JSX_DIR + '/index.jsx',
+
+    output: {
+        path: BUILD_DIR,
+        filename: 'bundle.js'
+    },
+```
+
+The `entry` setting indicates the main entry-point of our code (vaguely similar to main.c for you C/C++ programmers or 
+__main__ for Python fans).  `Webpack` starts with the specified `entry` file and scans it for `require` statements.  All
+imported references are recursively scanned for further references until a complete list of dependencies is compiled.  The
+full list of required modules are then combined into a single result which is stored according to the `output` setting.
+ 
+For this project, we instruct `webpack` to start with the file `./src/jsx/index.jsx`, find all of its dependencies, and
+bundle it all into a result file, `./build/bundle.js`.
