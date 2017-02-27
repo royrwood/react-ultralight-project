@@ -216,3 +216,11 @@ using them in this ultralight project.  We are, however, using `CopyWebpackPlugi
 file, `index.html`, and our CSS file, `index.css`, to the build directory.  There are other (better?) ways that those 
 assets could be handled, but to keep things simple for this example, we are doing it in an obvious, explicit way.
 
+
+TODO:
+* finish the tutorial writeup
+** general review/editing
+** npm run scripts
+** where to go from here suggestions
+* add comments to the project files
+
