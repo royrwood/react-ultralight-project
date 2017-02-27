@@ -92,7 +92,9 @@ project, and `npm` will take care of fetching them and their dependencies for yo
 normally called `package.json` and is saved at the root of the project folder.  If you look at the `package.json` file for
 this project, you'll see that it contains a few elements describing things like the name and version of the project.  More
 interestingly, it contains `devDependencies` and `dependencies` sections, which define the libraries needed for development
-and for runtime deployment.  Here are those sections for reference:
+and for runtime deployment.  
+
+Here are those sections for reference:
 
 ```
   "dependencies": {
@@ -118,6 +120,31 @@ before the version number tells `npm` that we'll accept any version of the packa
 the specified major version number; for example, a specifier of "react": "^15.4.2" means we will accept a package with
 version 15.*.*, as long as it's equal or greater than 15.4.2.
 
+In addition to the React libraries in the `dependencies` section, there are a number of odd looking entries in the 
+`devDependencies` section.  Those libraries are required for transpiling and bundling our code, which is discussed further
+on in this tutorial.
+
+Once you have your required libraries listed in `package.json`, you simply execute `npm install` and `npm` will fetch
+all your requirements and any of their dependencies.  The fetched libraries will be stored in a sub-directory named
+`node_modules`.  Of course, you'll have to make sure that `npm` is installed on your system before you can execute
+`npm install`, and you'll have to have a terminal shell open to the project directory.
+
 The `package.json` file also includes an interesting `scripts` element that we'll discuss in the next section...
 
 
+**Transpiling JSX:**
+
+The ES6 and JSX syntax we use to write React code is not natively supported by our target browsers, so we first have to
+'transpile' the code to a flavour of Javascript that all browsers support.  This still seems odd to me, but apparently
+that's the way things work in the crazy world of web development.  I suppose the main problem with ES6 is that there are 
+a lot of players in the Javascript world, and standards have been slow to evolve and even slower to be implemented (not
+to mention the fact that there are a lot of outdated browsers out there).  JSX is even more hopeless, since it is 
+completely non-standard.  Anyway, we were talking about transpiling our code to something that can run in a browser, 
+weren't we?  Let's get back to that now.
+  
+In order to convert our JSX code to ES3 Javascript, we need to use a tool called `babel`.  Simply put, `babel` is a 
+Javascript compiler (or transpiler) that converts ES6 Javascript to ES3 Javascript that will run in most browsers.  In
+addition to supporting ES6, `babel` also supports JSX syntax, which is unique to React development.
+
+If you look at the `devDependencies` section of the `package.json` file in the project, you'll notice that there are 
+several `babel` libraries listed.
