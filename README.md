@@ -202,3 +202,17 @@ full list of required modules are then combined into a single result which is st
  
 For this project, we instruct `webpack` to start with the file `./src/jsx/index.jsx`, find all of its dependencies, and
 bundle it all into a result file, `./build/bundle.js`.
+
+In addition to bundling Javascript modules, `webpack` also supports the concept of a "loader", which is basically a
+supporting component that processes target files that the core `webpack` tool doesn't know how to handle.  For this project,
+we use the `babel-loader` to handle `.jsx` files, converting them into ES3 Javascript that `webpack` knows how to handle.  
+The `module:loaders` section of `webpack.config.json` tells `webpack` to pipe all files in the `JSX_DIR` that match the 
+`test` regex of `\.jsx$` through `babel-loader`.  The result will be further processed by `webpack` and included in the
+final output bundle.  Also note that two parameters (`babelrc` and `presets`) are passed to `babel` to tell it to not
+bother looking for a `.babelrc` file, and to perform `es2015` and `react` processing.  
+
+There are many other `webpack` loaders to support other resources such as image files or CSS files, though we are not
+using them in this ultralight project.  We are, however, using `CopyWebpackPlugin` to explicitly copy our static HTML
+file, `index.html`, and our CSS file, `index.css`, to the build directory.  There are other (better?) ways that those 
+assets could be handled, but to keep things simple for this example, we are doing it in an obvious, explicit way.
+
