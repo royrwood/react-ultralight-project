@@ -118,7 +118,7 @@ Here are those sections for reference:
 As you can see, the desired version numbers of the libraries are specified (e.g. "react": "^15.4.2").  The caret symbol
 before the version number tells `npm` that we'll accept any version of the package with a major version number equal to 
 the specified major version number; for example, a specifier of "react": "^15.4.2" means we will accept a package with
-version 15.*.*, as long as it's equal or greater than 15.4.2.
+version 15.\*.\*, as long as it's equal or greater than 15.4.2.
 
 In addition to the React libraries in the `dependencies` section, there are a number of odd looking entries in the 
 `devDependencies` section.  Those libraries are required for transpiling and bundling our code, which is discussed further
@@ -196,7 +196,7 @@ const config = {
 ```
 
 The `entry` setting indicates the main entry-point of our code (vaguely similar to main.c for you C/C++ programmers or 
-__main__ for Python fans).  `Webpack` starts with the specified `entry` file and scans it for `require` statements.  All
+\_\_main\_\_ for Python fans).  `Webpack` starts with the specified `entry` file and scans it for `require` statements.  All
 imported references are recursively scanned for further references until a complete list of dependencies is compiled.  The
 full list of required modules are then combined into a single result which is stored according to the `output` setting.
  
