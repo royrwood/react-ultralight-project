@@ -1,18 +1,18 @@
-var webpack = require('webpack');
-var path = require('path');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-var BUILD_DIR = path.resolve(__dirname, './build');
-var JSX_DIR = path.resolve(__dirname, './src/jsx');
-var CSS_DIR = path.resolve(__dirname, './src/css');
-var HTML_DIR = path.resolve(__dirname, './src/html');
+const BUILD_DIR = path.resolve(__dirname, './build');
+const JSX_DIR = path.resolve(__dirname, './src/jsx');
+const CSS_DIR = path.resolve(__dirname, './src/css');
+const HTML_DIR = path.resolve(__dirname, './src/html');
 
-var config = {
+const config = {
     entry: JSX_DIR + '/index.jsx',
 
     output: {
         path: BUILD_DIR,
-        filename: 'bundle.jsx'
+        filename: 'bundle.js'
     },
 
     module: {
