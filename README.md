@@ -219,8 +219,8 @@ assets could be handled, but to keep things simple for this example, we are doin
 
 TODO:
 * finish the tutorial writeup
-** general review/editing
-** npm run scripts
-** where to go from here suggestions
+- general review/editing
+- npm run scripts
+- where to go from here suggestions
 * add comments to the project files
 
